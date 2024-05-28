@@ -10,16 +10,16 @@
 
 ### 1. Import library yang akan digunakan 
 jika belum memiliki library tersebut silahkan install dengan cara python -m pip install(nama pakacge)
-
+```
 import streamlit as st
 import cv2
 from matplotlib import pyplot as plt
 import numpy as np
 from PIL import Image
-
+```
 
 ### 2. Fungsi Konversi RGB ke HSV
-
+```
 def convert_rgb_to_hsv(image):
     return cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
@@ -34,19 +34,19 @@ def plot_histogram(image):
         plt.xlim([0, 256])
     plt.title('Histogram')
     st.pyplot(plt)
-
+```
 
 ### 4. Fungsi Mengatur Brightness dan Contrast
-
+```
 def adjust_brightness_contrast(image, brightness=0, contrast=0):
     alpha = (contrast + 127) / 127  # alpha range 1.0-2.0
     beta = brightness - 127         # beta range -127 to 127
     adjusted_image = cv2.convertScaleAbs(image, alpha=alpha, beta=beta)
     return adjusted_image
-
+```
 
 ### 5. Fungsi Mendeteksi Kontur
-
+```
 def find_contours(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     blurred = cv2.GaussianBlur(gray, (5, 5), 0)
@@ -54,10 +54,10 @@ def find_contours(image):
     contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     image_with_contours = cv2.drawContours(image.copy(), contours, -1, (0, 255, 0), 3)
     return image_with_contours
-
+```
 
 ### 6. Desain interface streamlit
-
+```
 def main():
     st.title('Image Manipulation App')
 
@@ -87,6 +87,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
+```
 
 ### 7. Hasil akhir projek
